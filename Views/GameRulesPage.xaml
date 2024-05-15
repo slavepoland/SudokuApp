@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SudokuApp.Views.GameRulesPage"
+             Title="GameRulesPage">
+
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="absoluteLayout" Padding="5">
+
+            <Button x:Name="discardButton" ClassId="BtnDiscard" Padding="5" CornerRadius="20"
+                    FontSize="Small"
+                    FontAttributes="Bold"
+                    AbsoluteLayout.LayoutBounds="1.0, 0.1, 0.3, 0.05"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Clicked="Back_Clicked"
+                    />
+
+            <Grid x:Name="sudokuBoardXaml"
+                    AbsoluteLayout.LayoutBounds="0.0, 0.338, 1, 0.56"
+                    AbsoluteLayout.LayoutFlags="All"
+            />
+            
+            <Frame x:Name="firstFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.355, 0.2, 0.07"
+                   AbsoluteLayout.LayoutFlags="All">
+                <Label x:Name="lblTouchCell" ClassId="LabelTouchCell" TextColor="White"/>
+            </Frame>
+
+            <!--<Frame x:Name="secondFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0.95, 0.8, 0.3, 0.05"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+                <Label Text="Wybierz tę cyfrę" TextColor="White"/>
+            </Frame>-->
+
+            <!--<Frame x:Name="thirdFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="1, 0.35, 0.4, 0.08"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="True">
+                <Label Text="W to pole można wstawić cyfrę 2" TextColor="White"/>
+            </Frame>-->
+
+            <!--<Frame x:Name="fourthFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0, 0.815, 0.3, 0.05"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+                <Label Text="Wybierz tę cyfrę" TextColor="White"/>
+            </Frame>-->
+
+            <!--<Frame x:Name="fifthFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0.55, 0.62, 0.5, 0.07"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+                <Label Text="W to pole można wstawić cyfrę 6" TextColor="White"/>
+            </Frame>-->
+
+            <!--<Frame x:Name="sixthFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0.65, 0.815, 0.3, 0.05"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+                <Label Text="Wybierz tę cyfrę" TextColor="White"/>
+            </Frame>-->
+
+            <!--<Frame x:Name="finalFrame" CornerRadius="10" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource MyPrimary}}"
+                   AbsoluteLayout.LayoutBounds="0.65, 0.815, 1, 0.12"
+                   AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+                <Label Text="Udało Ci się wypełnić kwadrat, wiersz i kolumnę. Celem Sudoku jest wstawienie w każdym kwadracie, wierszu i kolumnie cyfry od 1 do 9."
+                       TextColor="White"/>
+            </Frame>-->
+
+            <!--<Button x:Name="finalButton" Text="Dotknij, aby kontynuować" 
+                    Clicked="Back_Clicked"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.91, 0.65, 0.06"
+                    AbsoluteLayout.LayoutFlags="All"
+                    IsVisible="False"
+                    />-->
+
+            <StackLayout Orientation="Horizontal" x:Name="gridButtons" 
+                         Padding="2"
+                    AbsoluteLayout.LayoutBounds="0.0, 0.92, 1, 0.1"
+                    AbsoluteLayout.LayoutFlags="All">
+
+                <Button Text="1"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="1" IsEnabled="False"/>
+                <Button x:Name="btnTwo" Text="2"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="2" Clicked="Button2_Clicked" IsEnabled="False"/>
+                <Button Text="3" 
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="3" IsEnabled="False"/>
+                <Button Text="4"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="4" IsEnabled="False"/>
+                <Button Text="5" 
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="5" IsEnabled="False"/>
+                <Button x:Name="btnSix" Text="6" Grid.Row="0" Grid.Column="5"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="6" Clicked="Button6_Clicked" IsEnabled="False"/>
+                <Button Text="7"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="7" IsEnabled="False"/>
+                <Button x:Name="btnEight" Text="8"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="8" Clicked="Button8_Clicked" IsEnabled="False"/>
+                <Button Text="9"
+                        Style="{StaticResource ButtonStyle}"
+                        ClassId="9" IsEnabled="False"/>
+            </StackLayout>
+                
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:admob="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+             xmlns:models="clr-namespace:SudokuApp.Models"
+             xmlns:settings="clr-namespace:SudokuApp.Services.Settings"
+             x:Class="SudokuApp.MainPage">
+
+
+    <!--xmlns:translate="clr-namespace:SudokuApp.ViewModels"-->
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="{AppThemeBinding Light={DynamicResource White}, Dark={DynamicResource Black}}">
+            <!--przejście do ustawień-->
+            <FlexLayout JustifyContent="End" 
+                         AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <Image Source="{AppThemeBinding Light=ic_launcher_settings_light.png, 
+                                                Dark=ic_launcher_settings_dark.png}" 
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"
+                       HeightRequest="48" WidthRequest="48">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageSettings_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </FlexLayout>
+            
+            <!--Label Sudoku-->
+            <StackLayout 
+                         AbsoluteLayout.LayoutBounds="0.0,0.17,1,0.5"
+                         AbsoluteLayout.LayoutFlags="All">
+                <Label x:Name="lblTest" Text="SUDOKU" FontSize="Title" FontAttributes="Bold"
+                    VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <!--Przyciski Kontunuuj i Nowa Gra-->
+            <Grid VerticalOptions="FillAndExpand" Padding="50" RowSpacing="10"
+                      AbsoluteLayout.LayoutBounds="0.0,0.83,1,0.31"
+                      AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame x:Name="frameContinue" Grid.Row="0" Padding="10"
+                           Style="{DynamicResource MainPageFrameStyle}" IsVisible="False">
+                    <StackLayout Style="{DynamicResource StackNew}">
+                        <Label x:Name="lblContinue" Style="{DynamicResource MainLabel}"/>
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                            <Image x:Name="clockImage" HeightRequest="20" WidthRequest="20"
+                                       Source="{AppThemeBinding Light=ic_action_access_time_dark.png, 
+                                                                Dark=ic_action_access_time_dark.png}"/>
+                            <Label x:Name="lblTime" FontSize="Small" Style="{DynamicResource MainLabel}"/>
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Continue_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Grid.Row="1" Style="{DynamicResource MainPageFrameStyle}">
+                    <Label x:Name="lblNewGame" Style="{DynamicResource MainLabel}" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseLevel_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+
+            <!--Reklama-->
+            <StackLayout x:Name="StackReklama" Style="{DynamicResource StackAds}"
+                         AbsoluteLayout.LayoutBounds="0.0, 1.0, 1, 0.1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <admob:MTAdView x:Name="AdsBanner" 
+                                VerticalOptions="FillAndExpand"
+                                BackgroundColor="Transparent" 
+                                AdSize="AnchoredAdaptive"
+                                IsVisible="True"
+                                Loaded="MyAds_Loaded"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

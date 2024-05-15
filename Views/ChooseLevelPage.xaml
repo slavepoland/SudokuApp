@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             x:Class="SudokuApp.Views.ChooseLevelPage"
+             Title="ChooseLevelPage"
+             CloseWhenBackgroundIsClicked="True"
+             BackgroundClicked="PopupPage_BackgroundClicked"
+             >
+
+    <AbsoluteLayout >
+        <Frame BackgroundColor="LightGray"
+            AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.8, 0.45"
+            AbsoluteLayout.LayoutFlags="All">
+
+            <StackLayout Style="{DynamicResource StackNew}" Padding="5" Spacing="5">
+                
+                <Frame Style="{DynamicResource ChooseLevelFrameStyle}" ClassId="1">
+                    <Label x:Name="lblLevel1" Style="{DynamicResource MainLabel}"  />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Style="{DynamicResource ChooseLevelFrameStyle}" ClassId="2">
+                    <Label x:Name="lblLevel2" Style="{DynamicResource MainLabel}" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Style="{DynamicResource ChooseLevelFrameStyle}" ClassId="3">
+                    <Label x:Name="lblLevel3" Style="{DynamicResource MainLabel}" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Style="{DynamicResource ChooseLevelFrameStyle}" ClassId="4">
+                    <Label x:Name="lblLevel4" Style="{DynamicResource MainLabel}"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame x:Name="fileExistFrame" Style="{DynamicResource ChooseLevelFrameStyle}" 
+                       ClassId="5" IsVisible="False">
+                    <Label x:Name="lblRestart" Style="{DynamicResource MainLabel}" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Style="{DynamicResource ChooseLevelFrameStyle}" BackgroundColor="White" ClassId="6">
+                    <Label x:Name="lblCancel" Style="{DynamicResource MainLabel}" 
+                           TextColor="Black"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Frame_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </StackLayout>
+        </Frame>
+    </AbsoluteLayout>
+
+</mopups:PopupPage>

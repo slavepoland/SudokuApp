@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SudokuApp.Views.SettingsPage"
+             xmlns:models="clr-namespace:SudokuApp.Models"
+             xmlns:settings="clr-namespace:SudokuApp.Services.Settings"
+             xmlns:viewModels="clr-namespace:SudokuApp.ViewModels"
+             xmlns:admob="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+             Title="SettingsPage"
+             >
+
+    <AbsoluteLayout x:Name="absoluteLayout">
+
+        <Grid Style="{StaticResource SettingsGrid}"
+              AbsoluteLayout.LayoutBounds="0.0, 0, 1, 0.9" 
+              AbsoluteLayout.LayoutFlags="All" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_launcher_left_light.png, Dark=ic_launcher_left_dark.png}" 
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="StartAndExpand"
+                   HeightRequest="48">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   x:Name="lblSettings" ClassId="LabelSettings" 
+                   Style="{StaticResource LabelSettings}" 
+                   HorizontalOptions="CenterAndExpand"/>
+            
+            <Label x:Name="lblDarkMode" ClassId="LabelDarkMode" Grid.Row="1" Grid.Column="0"
+                Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="ThemeSwitch" Toggled="SwitchThemeChange_Toggled"/>
+            </Frame>
+
+            <Label x:Name="lblSounds" ClassId="LabelSounds" Grid.Row="2" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="2" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="SoundSwitch" Toggled="SwitchSoundChange_Toggled"/>
+            </Frame>
+
+            <Label x:Name="lblVibrations" ClassId="LabelVibrations" Grid.Row="3" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="3" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="VibrationsSwitch" Toggled="SwitchVibrationsChange_Toggled"/>
+            </Frame>
+
+        <Label x:Name="lblTimer" ClassId="LabelTimer" 
+                    Grid.Row="4" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="4" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="TimerSwitch" Toggled="SwitchTimerChange_Toggled"/>
+            </Frame>
+
+            <Label x:Name="lblMistakes" ClassId="LabelMistakes" 
+                    Grid.Row="5" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="5" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="MistakesSwitch" Toggled="SwitchMistakesChange_Toggled"/>
+            </Frame>
+
+            <Label x:Name="lblAreas" ClassId="LabelAreas" 
+                    Grid.Row="6" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="6" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="AreasSwitch" Toggled="SwitchAreasChange_Toggled"/>
+            </Frame>
+
+            <Label x:Name="lblIdenticalNumber" ClassId="LabelIdenticalNumber" 
+                    Grid.Row="7" Grid.Column="0"
+                    Style="{StaticResource LabelSettings}"/>
+            <Frame Grid.Row="7" Grid.Column="1" Style="{StaticResource SettingsPageFrame}">
+                <Switch x:Name="IdenticalNumberSwitch" Toggled="SwitchIdenticalNumberChange_Toggled"/>
+            </Frame>
+            <BoxView Grid.Row="8" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                     HeightRequest="5"/>
+
+            <Button x:Name="btnRules" ClassId="BtnTextRules" Grid.Row="9" Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand" Clicked="ButtonRules_Clicked"/>
+            <Button x:Name="btnLanguage" ClassId="BtnTextLanguage" Grid.Row="10" Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand" Clicked="ButtonLanguage_Clicked"/>
+
+            <BoxView Grid.Row="11" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" 
+                  HeightRequest="5"/>
+
+            <Button x:Name="btnStatistic" ClassId="BtnTextStatistic" Grid.Row="12" Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand" Clicked="ButtonStatistic_Clicked" 
+                    Padding="15" />
+        </Grid>
+
+        <!--Reklama-->
+        <StackLayout x:Name="StackReklama" Style="{DynamicResource StackAds}"
+            AbsoluteLayout.LayoutBounds="0.0, 1.0, 1, 0.1"
+            AbsoluteLayout.LayoutFlags="All">
+            <!--<admob:MTAdView x:Name="MyAds" VerticalOptions="FillAndExpand"
+                            BackgroundColor="Transparent" 
+                            AdSize="AnchoredAdaptive"
+                            IsVisible="true"
+                            Loaded="MyAds_Loaded" />-->
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SudokuApp.Views.StatisticPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Title="StatisticPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource White}, 
+                     Dark={StaticResource Black}}"
+                     VerticalOptions="FillAndExpand" Padding="0">
+
+            <Image Source="{AppThemeBinding Light=ic_launcher_left_light.png, 
+                    Dark=ic_launcher_left_dark.png}" Grid.Row="0" Grid.ColumnSpan="3"
+                    HeightRequest="48" HorizontalOptions="StartAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, 
+                   Dark={StaticResource Gray400}}"
+                   HorizontalOptions="CenterAndExpand" Padding="40,20,40,20" CornerRadius="8">
+                <Label x:Name="lblStatistic" FontSize="Medium"
+                       HorizontalOptions="Start"
+                       ClassId="BtnTextStatistic"/>
+            </Frame>
+
+            <Grid x:Name="myGrid" >
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource EvenRow}"/>
+                <ImageButton x:Name="LeftBtn" Grid.Column="0" Grid.Row="0"
+                             Source="{AppThemeBinding Light=ic_launcher_left_light.png, 
+                             Dark=ic_launcher_left_dark.png}" 
+                             HeightRequest="48"
+                             Clicked="Button_Clicked"
+                             ClassId="Left"
+                             IsEnabled="False"
+                />
+                <CarouselView x:Name="myCarouselView" Grid.Row="0" Grid.Column="1"
+                              Position="0" HorizontalOptions="FillAndExpand"
+                              IsSwipeEnabled="False" IsScrollAnimated="False">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Tutaj dodaj treść jednego elementu w CarouselView -->
+                            <Label Text="{Binding Text}" FontSize="Large"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <ImageButton x:Name="RightBtn" Grid.Column="2" Grid.Row="0"
+                                Source="{AppThemeBinding Light=ic_launcher_right_light.png, 
+                                Dark=ic_launcher_right_dark.png}"
+                                HeightRequest="48"
+                                Clicked="Button_Clicked" 
+                                ClassId="Right"
+                                HorizontalOptions="End"/>
+
+                <BoxView Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource OddRow}"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelGS"/>
+                <Label ClassId="NumberGS" Grid.Column="2" Grid.Row="1"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource EvenRow}"/>
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelGW"/>
+                <Label ClassId="NumberGW" Grid.Column="2" Grid.Row="2"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource OddRow}"/>
+                <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelWR"/>
+                <Label ClassId="NumberWR" Grid.Column="2" Grid.Row="3"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource EvenRow}"/>
+                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelWWM"/>
+                <Label ClassId="NumberWWM" Grid.Column="2" Grid.Row="4"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource OddRow}"/>
+                <Label Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelBT"/>
+                <Label ClassId="NumberBT" Grid.Column="2" Grid.Row="5"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="6" Grid.ColumnSpan="3" Style="{StaticResource EvenRow}"/>
+                <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelAT"/>
+                <Label ClassId="NumberAT" Grid.Column="2" Grid.Row="6"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource OddRow}"/>
+                <Label Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelCWS"/>
+                <Label ClassId="NumberCWS" Grid.Column="2" Grid.Row="7"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="8" Grid.ColumnSpan="3" Style="{StaticResource EvenRow}"/>
+                <Label Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelStatistics}"
+                       ClassId="LabelBWS"/>
+                <Label ClassId="NumberBWS" Grid.Column="2" Grid.Row="8"
+                       Style="{StaticResource LabelStatisticsNumber}"/>
+
+                <BoxView Grid.Row="10" Grid.ColumnSpan="3" 
+                         HorizontalOptions="FillAndExpand" 
+                         HeightRequest="30"
+                         BackgroundColor="Transparent"/>
+                <Button x:Name="btnReset" Clicked="BtnReset_Clicked" Grid.Row="11" Grid.ColumnSpan="3"/>
+            </Grid>
+
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

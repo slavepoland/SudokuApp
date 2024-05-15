@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:admob="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+             x:Class="SudokuApp.GamePage">
+
+    <AbsoluteLayout x:Name="absoluteLayout" Padding="2">
+
+        <FlexLayout JustifyContent="SpaceBetween"
+                    AbsoluteLayout.LayoutBounds="0.0, 0.0, 1, 0.07"
+                    AbsoluteLayout.LayoutFlags="All">
+            <Image Source="{AppThemeBinding Light=ic_launcher_left_light.png, 
+                   Dark=ic_launcher_left_dark.png}"
+                   HeightRequest="48">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="{AppThemeBinding Light=ic_launcher_settings_light.png, 
+                   Dark=ic_launcher_settings_dark.png}"
+                   HeightRequest="48">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageSettings_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </FlexLayout>
+
+        <!-- Frame Time, Level, Mistake-->
+        <FlexLayout JustifyContent="SpaceBetween"
+              AbsoluteLayout.LayoutBounds="0.0, 0.05, 1, 0.065"
+              AbsoluteLayout.LayoutFlags="All">
+            <Label x:Name="LblLevel"/>
+            <Label x:Name="LblMistake"/>
+            <Label x:Name="LblTime"/>
+
+            <Image x:Name="ImagePlayStop" HeightRequest="48" WidthRequest="20"
+                   Source="{AppThemeBinding Light=ic_action_pause_light.png, Dark=ic_action_pause_dark.png}">
+            </Image>
+            <FlexLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PlayPause_Tapped"/>
+            </FlexLayout.GestureRecognizers>
+        </FlexLayout>
+
+        <Grid x:Name="sudokuBoardXaml" 
+                  AbsoluteLayout.LayoutBounds="0.0, 0.27, 1, 0.62"
+                  AbsoluteLayout.LayoutFlags="All"/>
+
+        <!-- Przyciski 1-9 i ikony -->
+            <Grid x:Name="gridImage"
+                  AbsoluteLayout.LayoutBounds="0.0, 0.95, 1, 0.23"
+                  AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="btnBack" 
+                           Source="{AppThemeBinding Light=ic_launcher_undo_light.png, 
+                           Dark=ic_launcher_undo_dark.png}"
+                           Grid.Row="0" Grid.Column="0"
+                           ClassId="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image x:Name="btnErase" 
+                           Source="{AppThemeBinding Light=ic_launcher_eraser_light.png, 
+                           Dark=ic_launcher_eraser_dark.png}"
+                           Grid.Row="0" Grid.Column="1" 
+                           ClassId="2">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image x:Name="btnNotes" 
+                           Source="{AppThemeBinding Light=ic_launcher_notes_light.png, 
+                           Dark=ic_launcher_notes_dark.png}"
+                           Grid.Row="0" Grid.Column="2"
+                           ClassId="4">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label x:Name="lblNotes" Grid.Row="0" Grid.Column="2"
+                            ClassId="LabelNotesOff"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Image x:Name="btnHint" 
+                           Source="{AppThemeBinding Light=ic_launcher_bulb_light.png, 
+                           Dark=ic_launcher_bulb_dark.png}"
+                           Grid.Row="0" Grid.Column="3"
+                           ClassId="3">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label x:Name="lblHint" Grid.Row="0" Grid.Column="3"
+                        ClassId="GetHint"
+                        HorizontalOptions="End" 
+                        VerticalOptions="CenterAndExpand"
+                        IsVisible="False" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Image x:Name="imageGetHint" Grid.Row="0" Grid.Column="3"
+                        ClassId="GetHint"
+                        Source="{AppThemeBinding Light=ic_launcher_video_light.png, 
+                        Dark=ic_launcher_video_dark.png}"
+                        IsVisible="False" 
+                        HorizontalOptions="End" 
+                        VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label ClassId="LabelBack" Grid.Row="1" Grid.Column="0"/>
+                <Label ClassId="LabelErase" Grid.Row="1" Grid.Column="1"/>
+                <Label ClassId="LabelNotes" Grid.Row="1" Grid.Column="2"/>
+                <Label ClassId="LabelHint" Grid.Row="1" Grid.Column="3"/>
+            
+
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="4"
+                             Orientation="Horizontal" x:Name="gridButtons" Padding="0"
+                             HorizontalOptions="FillAndExpand">
+                    <Button Text="1" Style="{DynamicResource ButtonStyle}" ClassId="1" Clicked="Button_Clicked"/>
+                    <!--<Label Text="9" FontSize="Micro"/>-->
+                    <Button Text="2" Style="{DynamicResource ButtonStyle}" ClassId="2" Clicked="Button_Clicked"/>
+                    <Button Text="3" Style="{DynamicResource ButtonStyle}" ClassId="3" Clicked="Button_Clicked"/>
+                    <Button Text="4" Style="{DynamicResource ButtonStyle}" ClassId="4" Clicked="Button_Clicked"/>
+                    <Button Text="5" Style="{DynamicResource ButtonStyle}" ClassId="5" Clicked="Button_Clicked"/>
+                    <Button Text="6" Style="{DynamicResource ButtonStyle}" ClassId="6" Clicked="Button_Clicked"/>
+                    <Button Text="7" Style="{DynamicResource ButtonStyle}" ClassId="7" Clicked="Button_Clicked"/>
+                    <Button Text="8" Style="{DynamicResource ButtonStyle}" ClassId="8" Clicked="Button_Clicked"/>
+                    <Button Text="9" Style="{DynamicResource ButtonStyle}" ClassId="9" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </Grid>
+
+        <StackLayout x:Name="StackReklama" Style="{DynamicResource StackAds}"
+                         AbsoluteLayout.LayoutBounds="0, 1, 1, 0.085"
+                         AbsoluteLayout.LayoutFlags="All">
+        </StackLayout>
+
+    </AbsoluteLayout>
+</ContentPage>

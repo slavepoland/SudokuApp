@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:admob="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+             x:Class="SudokuApp.AdsPopupPage">
+
+    <AbsoluteLayout>
+        <StackLayout x:Name="MainAdsStack"
+                     Style="{StaticResource AdsPopupPageStack}"
+                     AbsoluteLayout.LayoutBounds="0.0, 1, 1, 0.4"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="3">
+
+            <StackLayout Style="{DynamicResource StackAds}">
+                <Frame Padding="0" CornerRadius="8" HorizontalOptions="EndAndExpand">
+                    <Button Text="X" Clicked="OnCloseButtonClicked"/>
+                </Frame>
+                <Label x:Name="lblGetHint" ClassId="LabelGetTips"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand" 
+                        VerticalOptions="StartAndExpand" >
+                </Label>
+            </StackLayout>
+
+            <StackLayout Style="{DynamicResource StackAds}">
+                <Label x:Name="lblSeeTips" ClassId="LabelSeeTips" 
+                       FontSize="Small"/>
+
+                <Button x:Name="btnAdsWatch" ClassId="BtnSeeAd"
+                        Clicked="Button_Clicked" VerticalOptions="EndAndExpand"
+                />
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCloseButtonClicked"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout x:Name="StackReklama"
+                Style="{DynamicResource StackAds}" VerticalOptions="EndAndExpand">
+                <admob:MTAdView x:Name="AdsBanner"
+                            AdSize="AnchoredAdaptive"
+                            IsVisible="true"
+                            Loaded="MyAds_Loaded"
+                />
+            </StackLayout>
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCloseButtonClicked"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </AbsoluteLayout>
+</mopups:PopupPage>
+
+<!--xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:admob="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"-->

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SudokuApp.Views.CustomDialogGameFinalText"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             Title="CustomDialog">
+
+    <AbsoluteLayout >
+        <StackLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.9, 0.22"
+                     AbsoluteLayout.LayoutFlags="All">
+            <Frame x:Name="mainFrame" 
+                   BackgroundColor="{AppThemeBinding Light={StaticResource WhiteSmoke}, 
+                   Dark={StaticResource Black} }"
+                   CornerRadius="15" Padding="15"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+         
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="lblTitle" Grid.Row="0" Grid.Column="0"
+                            Style="{StaticResource LabelCustomDialogGame}"/>
+                    <Label x:Name="lblMessage" Grid.Row="1" Grid.ColumnSpan="2"
+                           Style="{StaticResource LabelCustomDialogGame}"/>
+                    <Frame x:Name="frameOK" Grid.Row="2" Grid.Column="1" ClassId="Yes" 
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, 
+                           Dark={StaticResource MyPrimary} }"
+                           Padding="1">
+                        <Label x:Name="lblYes" Style="{StaticResource LabelResetStatistics}"/>
+                    </Frame>
+                </Grid>   
+
+            </Frame>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</mopups:PopupPage>

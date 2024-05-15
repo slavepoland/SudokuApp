@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             x:Class="SudokuApp.Views.ActivityIndycatorPage"
+             Title="ActivityIndycatorPage">
+
+    <StackLayout x:Name="stackLayout" VerticalOptions="Center" HorizontalOptions="Center"
+                 WidthRequest="250" HeightRequest="50">
+        <ActivityIndicator x:Name="activityIndycator" IsRunning="True" VerticalOptions="FillAndExpand"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray100}}"
+                           Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+    </StackLayout>
+    
+</mopups:PopupPage>

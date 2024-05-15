@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS8602: Wyłuskanie odwołania, które może mieć wartość null.
+dotnet_diagnostic.CS8602.severity = none
+
+# IDE0011: Dodaj nawiasy klamrowe
+csharp_prefer_braces = true
